@@ -255,7 +255,7 @@ class Parameter(object):
         if self.type == 'List':
             str_param += self.form_list(self.value)
         if self.default:
-           str_param += '{default ' + self.set_value(self.default, indent)+"}"
+           str_param += 'default ' + self.set_value(self.default, indent)
         if self.value:
            str_param += 'value ' + self.set_value(self.value, indent)
         str_param += "}"

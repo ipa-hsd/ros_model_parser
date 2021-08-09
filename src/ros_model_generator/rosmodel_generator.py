@@ -53,8 +53,8 @@ class RosModelGenerator(object):
     for component in rossystem.components:
         node = model.Node(component.name)
 
-        # for param_name, param in component.params.iteritems():
-          # node.add_parameter(param_name, None, None, param[0])
+        for param in component.params:
+          node.add_parameter(param.resolved, None, None, param.value)
 
         for pub, pub_type in component.publishers.iteritems():
           node.add_publisher(pub, pub_type)
