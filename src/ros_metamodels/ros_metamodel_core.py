@@ -170,14 +170,14 @@ class Parameter(object):
     def set_value(self, value, indent):
         str_param_value = ""
         if self.type == "String":
-            str_param_value += "'"+self.value+"'"
+            str_param_value += "'"+value+"'"
         elif self.type == "Boolean":
-            str_param_value += str(self.value).lower()
+            str_param_value += str(value).lower()
         elif self.type == "List":
-            str_param_value += str(self.value).replace(
+            str_param_value += str(value).replace(
                 "[", "{").replace("]", "}")
         elif self.type == 'Struc':
-            str_param_value += self.value_struct(self.value[0], indent+"  ")
+            str_param_value += self.value_struct(value[0], indent+"  ")
         else:
             str_param_value += str(value)
         return str_param_value
@@ -253,7 +253,8 @@ class Parameter(object):
             str_param += self.types_struct(self.value[0], indent)
             #str_param = str_param[:-2]
         if self.type == 'List':
-            str_param += self.form_list(self.value)
+            if self.value:
+                str_param += self.form_list(self.value)
         if self.default:
            str_param += 'default ' + self.set_value(self.default, indent)
         if self.value:
